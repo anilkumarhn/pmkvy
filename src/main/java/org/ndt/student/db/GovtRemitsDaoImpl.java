@@ -76,9 +76,9 @@ public class GovtRemitsDaoImpl implements GovtRemitsDao
 		 .addEntity("govtRemits", GovtRemits.class)
 		 .addEntity("students", Student.class).list();
 		System.out.println(" candidateID :"+list.toString());*/
-		List<GovtRemits> list=session.createCriteria(GovtRemits.class,new String(batchID)).list();
-		//List<GovtRemits> list=session.createCriteria(GovtRemits.class).createAlias("students","st").add(Restrictions.like("st.candidateID", "10000", MatchMode.ANYWHERE)).list();
-		
+		//List<GovtRemits> list=session.createCriteria(GovtRemits.class,new String(batchID)).list();
+		List<GovtRemits> list=session.createCriteria(GovtRemits.class).createAlias("students","st").add(Restrictions.like("st.candidateID", "10000", MatchMode.ANYWHERE)).list();
+		// simple comment
 		return list;
 	}
 
