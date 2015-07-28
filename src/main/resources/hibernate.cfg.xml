@@ -1,0 +1,20 @@
+<!DOCTYPE hibernate-configuration PUBLIC
+"-//Hibernate/Hibernate Configuration DTD//EN"
+"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+
+    <session-factory>
+		 <mapping class="org.ndt.student.entity.Student"/>
+    	 <mapping class="org.ndt.student.entity.Batch"/>
+    	  <mapping class="org.ndt.student.entity.Course"/>
+    	  
+    	  <mapping class="org.ndt.student.entity.Account"/>
+		<mapping class="org.ndt.student.entity.AssessmentResult"/>
+			<mapping class="org.ndt.student.entity.GovtRemits"/>
+			<mapping class="org.ndt.student.entity.Partner"/> 
+    	 <mapping class="org.ndt.student.entity.RoomanRemits"/>  	 
+    		<mapping class="org.ndt.student.entity.Centre"/>
+    			<mapping class="org.ndt.student.entity.Sector"/>
+    </session-factory>
+
+</hibernate-configuration>
