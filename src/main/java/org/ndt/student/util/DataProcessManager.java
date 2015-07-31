@@ -21,8 +21,9 @@ public class DataProcessManager
 	private Student student = null;
 	private GovtRemits govtRemits = null;
 	private RoomanRemits roomanRemits = null;
-	private Sector sector = null;
-	private Centre centre = null;
+	private Sector sectorDetails = null;
+	private Centre centreDetails = null;
+	
 	public GovtRemits studentDataProcessor(String sb)
 	{
 		String str = sb.toString();
@@ -47,15 +48,6 @@ public class DataProcessManager
 			courses.add(course);
 			student.setCourse(courses);
 			
-			/*Sector sector = new Sector(, );
-			Set<Sector> sectors = new HashSet<Sector>();
-			sectors.add(sector);
-			//student.
-			
-			Centre centre = new Centre(centreID, centreName);
-			Set<Centre> centres = new HashSet<Centre>();
-			centres.add(centre);*/
-			
 			Account account = new Account(data[24],data[25],data[26],data[27],data[28]);
 			student.setAccount(account);
 			
@@ -65,7 +57,6 @@ public class DataProcessManager
 			student.setAssessmentResult(results);
 	
 			govtRemits = new GovtRemits(Long.valueOf(data[36]), data[37], data[38], data[39], data[40],Double.valueOf(data[41]));
-			logger.debug("*******************Remits:"+ govtRemits);
 			Set<Student> students = new HashSet<Student>();
 			students.add(student);
 			govtRemits.setStudents(students);
@@ -105,6 +96,39 @@ public class DataProcessManager
 		return roomanRemits;
 	}
 	
+	
+	public Sector sectorDataProcessor(String sb)
+	{
+		String str = sb.toString();
+		String[] data = str.split("~");
+		if(data.length == 0 )
+		{
+			//logger.debug("Empty row ..........");
+		}
+		else
+		{
+				sectorDetails = new Sector(data[0],data[1]);
+				logger.debug("Data Processing Completed ..........");
+		}
+		return sectorDetails;
+	}
+	
+
+	public Centre centreDataProcessor(String sb)
+	{
+		String str = sb.toString();
+		String[] data = str.split("~");
+		if(data.length == 0 )
+		{
+			//logger.debug("Empty row ..........");
+		}
+		else
+		{
+			    centreDetails = new Centre(data[0],data[1]);
+				logger.debug("Data Processing Completed ..........");
+		}
+		return centreDetails;
+	}
 }
 
 

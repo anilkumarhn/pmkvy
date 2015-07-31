@@ -3,9 +3,6 @@ package org.ndt.student.controller;
 import java.io.IOException;
 
 import org.apache.log4j.Logger;
-import org.ndt.student.services.BatchService;
-import org.ndt.student.services.CourseService;
-import org.ndt.student.services.StudentService;
 import org.ndt.student.util.UploadManagerUtil;
 import org.ndt.student.util.ValidateUploadUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,14 +16,12 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class UploadController
 {
-
    public static final Logger logger = Logger.getLogger(UploadController.class);
     
    @Autowired
    private UploadManagerUtil uploadManagerUtil;
    
-   
-   @RequestMapping(value = "/uploadForm", method = RequestMethod.POST)
+   @RequestMapping(value = "/upload-student-partner-details.html", method = RequestMethod.POST)
    public String handleFormUpload(@RequestParam("file") MultipartFile file)throws IOException 
    {
        	if (!file.isEmpty())

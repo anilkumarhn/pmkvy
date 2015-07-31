@@ -44,7 +44,10 @@ public class BatchDaoImpl implements BatchDao
 	@Override
 	public List<Batch> getBatchList() 
 	{
-		List<Batch> batchList = (List<Batch>) sessionFactory.getCurrentSession().createCriteria(Batch.class).list();
+		System.out.println("ANil Batch :");
+		Session session = sessionFactory.openSession();
+		List<Batch> batchList = (List<Batch>) session.createCriteria(Batch.class).list();
+		logger.debug("Batch List"+batchList);
 		return batchList;
 	
 	}

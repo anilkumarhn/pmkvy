@@ -1,6 +1,8 @@
 package org.ndt.student.db;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
@@ -72,13 +74,17 @@ public class GovtRemitsDaoImpl implements GovtRemitsDao
 	@Override
 	public List<GovtRemits> getAllStudentList(String batchID) {
 		Session session = sessionFactory.openSession();
-		/*List<GovtRemits> list= session.createSQLQuery("SELECT {govtRemits.*}, {students.*}  FROM GovtRemits govtRemits, Student students ")
-		 .addEntity("govtRemits", GovtRemits.class)
-		 .addEntity("students", Student.class).list();
-		System.out.println(" candidateID :"+list.toString());*/
-		//List<GovtRemits> list=session.createCriteria(GovtRemits.class,new String(batchID)).list();
-		List<GovtRemits> list=session.createCriteria(GovtRemits.class).createAlias("students","st").add(Restrictions.like("st.candidateID", "10000", MatchMode.ANYWHERE)).list();
-		// simple comment
+		
+		//List<GovtRemits> list=session.createCriteria(GovtRemits.class).createAlias("students","st").add(Restrictions.like("st.candidateID", "10000", MatchMode.ANYWHERE)).list();
+		List<Student> students = session.createCriteria(Student.class).createAlias("batch","bt").add(Restrictions.like("bt.batchID", batchID, MatchMode.ANYWHERE)).list();
+		logger.debug("Student :-"+students);
+		List<GovtRemits> list = new ArrayList<GovtRemits>();
+		for(Student student : students)
+		{
+			List<GovtRemits> templist = session.createCriteria(GovtRemits.class).createAlias("students","st").add(Restrictions.like("st.candidateID",  student.getCandidateID(), MatchMode.ANYWHERE)).list();
+			list.addAll(templist);
+		}
+		logger.debug("Govt :- "+list);
 		return list;
 	}
 

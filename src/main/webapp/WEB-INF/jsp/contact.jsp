@@ -9,9 +9,35 @@
 </head>
 
 <body>
-	<form method="post" action="uploadForm.html" enctype="multipart/form-data">
-		<input type="file" name="file"/>
-	    <input type="submit"/>
+
+	<form method="post" action="upload-student-partner-details.html" enctype="multipart/form-data">
+		<table>
+		<tr>
+			<td>Select Student File :</td>
+			<td><input type="file" name="file"/></td>
+			<td><input type="submit" value="Upload"/></td>
+		</tr>
+		</table>
+	</form>
+	
+	<form method="post" action="upload-centre-details.html" enctype="multipart/form-data">
+		<table>
+			<tr>
+				<td>Select Centre Details File :</td>
+				<td><input type="file" name="file"/></td>
+				<td><input type="submit" value="Upload"/></td>
+			</tr>
+		</table>
+	</form>
+	
+	<form method="post" action="upload-sector-details.html" enctype="multipart/form-data">
+		<table>
+			<tr>
+				<td>Select Sector Details File :</td>
+				<td><input type="file" name="file"/></td>
+				<td><input type="submit" value="Upload"/></td>
+			</tr>
+		</table>
 	</form>
 
 </body>

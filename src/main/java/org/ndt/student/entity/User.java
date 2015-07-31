@@ -1,7 +1,5 @@
 package org.ndt.student.entity;
 
-import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,93 +7,64 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table( name = "USER")
-public class User implements Serializable
+@Table(name="USERS")
+public class User 
 {
-	private static final long serialVersionUID = 1L;
-	
-	private Long userID;
-	private String userName;
-	private String password;
-	private String userRole;
-	private String accountActive;
-	
-	public User()
-	{
-		super();
-	}
-	
-	public User(String userName, String password, String userRole,String accountActive)
-	{
-		super();
-		this.userName = userName;
-		this.password = password;
-		this.userRole = userRole;
-		this.accountActive = accountActive;
-	}
-	
 	@Id
 	@GeneratedValue
-	@Column( name = "USER_ID")
-	public Long getUserID()
+	@Column( name = "ID" )
+	private Integer id;
+	
+	@Column( name ="USER_NAME")
+	private String userName;
+	
+	@Column( name ="PASSWORD")
+	private String password;
+	
+	/*@OneToOne(cascade=CascadeType.ALL)
+	@JoinTable(name="USER_ROLES",joinColumns = {@JoinColumn(name="USER_ID", referencedColumnName="ID")},inverseJoinColumns = {@JoinColumn(name="ROLE_ID", referencedColumnName="ID")})
+	private Role role;
+
+*/	public Integer getId() 
 	{
-		return userID;
+		return id;
+	}
+
+	public User() 
+	{
+		super();
 	}
 	
-	@Column( name = "USER_NAME")
+	public User(Integer id, String userName, String password) 
+	{
+		super();
+		this.id = id;
+		this.userName = userName;
+		this.password = password;
+	}
+
+	public void setId(Integer id) 
+	{
+		this.id = id;
+	}
+	
 	public String getUserName()
 	{
 		return userName;
 	}
-	
-	@Column( name = "PASSWORD")
+
+	public void setUserName(String userName) 
+	{
+		this.userName = userName;
+	}
+
 	public String getPassword() 
 	{
 		return password;
 	}
-	
-	@Column( name = "USER_ROLE")
-	public String getUserRole() 
-	{
-		return userRole;
-	}
-	
-	@Column( name = "ACCOUNT_ACTIVE")
-	public String getAccountActive() 
-	{
-		return accountActive;
-	}
-	
-	
-	public void setUserID(Long userID) 
-	{
-		this.userID = userID;
-	}
-		
-	public void setUserName(String userName)
-	{
-		this.userName = userName;
-	}
-	
-	public void setPassword(String password)
+
+	public void setPassword(String password) 
 	{
 		this.password = password;
-	}
-	
-	public void setUserRole(String userRole) 
-	{
-		this.userRole = userRole;
-	}
-	
-	public void setAccountActive(String accountActive) 
-	{
-		this.accountActive = accountActive;
-	}
-	
-	@Override
-	public String toString() 
-	{
-		return "User [userID=" + userID + ", userName=" + userName + ", password=" + password + ", userRole=" + userRole
-				+ ", accountActive=" + accountActive + "]";
 	}
 }

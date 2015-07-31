@@ -41,8 +41,16 @@
         <put-attribute name="title" value="Student List Spring MVC" />  
         <put-attribute name="body" value="/WEB-INF/jsp/student.jsp" />  
     </definition>  
+
     <definition name="roomanFranchise" extends="base.definition">  
         <put-attribute name="title" value="Rooman Spring MVC" />  
         <put-attribute name="body" value="/WEB-INF/jsp/roomanFranchise.jsp" />  
     </definition>
+
+	<definition name="login-form" extends="base.definition">  
+        <put-attribute name="title" value="Student List Spring MVC" />  
+        <put-attribute name="body" value="/WEB-INF/jsp/login-form.jsp" />  
+    </definition>  
+	
+
 </tiles-definitions>  

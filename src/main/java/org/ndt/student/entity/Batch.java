@@ -1,15 +1,10 @@
 package org.ndt.student.entity;
 
 import java.io.Serializable;
-import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -47,17 +42,7 @@ public class Batch implements Serializable
 	@Column( name = "TEST_CONDUCTED")
 	private String testConducted;
 
-	@OneToMany(cascade = { CascadeType.ALL })
-	@JoinTable( name = "STUDENT_BATCH", joinColumns ={@JoinColumn( name = "BATCH_ID")}, inverseJoinColumns = {@JoinColumn ( name = "CANDIDATE_ID",referencedColumnName="CANDIDATE_ID")})
-	Set<Student> studentList;
 	
-	public Set<Student> getStudentList() {
-		return studentList;
-	}
-
-	public void setStudentList(Set<Student> studentList) {
-		this.studentList = studentList;
-	}
 
 	public Batch() 
 	{

@@ -52,7 +52,7 @@ public class Student implements Serializable
 	private Account account;
     
     @ManyToMany( cascade = CascadeType.ALL,fetch=FetchType.EAGER)
- 	@JoinTable( name = "STUDENT_BATCH", joinColumns ={@JoinColumn( name = "CANDIDATE_ID")}, inverseJoinColumns = {@JoinColumn ( name = "BATCH_ID",referencedColumnName="BATCH_ID")})
+ 	@JoinTable( name = "STUDENT_BATCH", joinColumns ={@JoinColumn( name = "CANDIDATE_ID")}, inverseJoinColumns = {@JoinColumn ( name = "BATCH_ID")})
  	private Set<Batch> batch = new HashSet<Batch>();
      
     @ManyToMany( cascade = CascadeType.ALL)

@@ -28,19 +28,44 @@ tr:hover td { background: #CAEFFD; color: #0768B3; cursor: pointer; }
     <link href="css/templatemo-style.css" rel="stylesheet">
     <link href="css/editpage.css" rel="stylesheet">
     <style type="text/css">
-       
     </style>
+    
+    
+	<style type="text/css">
+ .sector-centre {
+  color:#08233e;
+  font:8.4em Futura, ‘Century Gothic’, AppleGothic, sans-serif;
+  font-size:120%;
+  padding:14px;
+  background:url(overlay.png) repeat-x center #ffcc00;
+  background-color:rgba(255,204,0,1);
+  border:1px solid #ffcc00;
+  -moz-border-radius:10px;
+  -webkit-border-radius:10px;
+  border-radius:10px;
+  border-bottom:1px solid #9f9f9f;
+  -moz-box-shadow:inset 0 1px 0 rgba(255,255,255,0.5);
+  -webkit-box-shadow:inset 0 1px 0 rgba(255,255,255,0.5);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,0.5);
+  cursor:pointer;
+ }
+  </style>
 </head>
-<script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>      <!-- jQuery -->
-    <script type="text/javascript" src="js/templatemo-script.js"></script>      <!-- Templatemo Script -->
+<script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>      
+    <script type="text/javascript" src="js/templatemo-script.js"></script>   
 
+
+    
 <body>
-	<div class="panel panel-default table-responsive">
-				<label path="" align="left">Branch Name :Rajajinagar </label>
-				<label path="" align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				Sector Name :Agriculture Sector Skill Council of India </label>
-   <h3>Batch List</h3>
-  	
+
+	<div  class="sector-centre">
+		<label>Centre ID :<b><i>${centre}</i></b> </label>
+		<label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+		<label>Sector ID :<b><i>${sector}</i></b></label>
+  </div>
   	<c:if test="${!empty batchList}">
             
             <table id="t_id" class="table table-striped table-bordered templatemo-user-table" >
@@ -48,7 +73,7 @@ tr:hover td { background: #CAEFFD; color: #0768B3; cursor: pointer; }
                   	<tr>
                   	    <td class="white-text templatemo-sort-by">Centre ID <span class="caret"></span></td>
                 	    <td class="white-text templatemo-sort-by">Batch ID <span class="caret"></span></td>
-	                    <td class="white-text templatemo-sort-by">Sector Name <span class="caret"></span></td>
+	                    <td class="white-text templatemo-sort-by">Course Name <span class="caret"></span></td>
 	                    <td class="white-text templatemo-sort-by">Start Date <span class="caret"></span></td>
 	                    <td class="white-text templatemo-sort-by">End Date <span class="caret"></span></td>
 	                    <td class="white-text templatemo-sort-by">Test Date <span class="caret"></span></td>
@@ -81,11 +106,11 @@ tr:hover td { background: #CAEFFD; color: #0768B3; cursor: pointer; }
               
               <form action="edit.html" method="POST" id="edit_form">
 			 		Centre ID :
-			 				<input type="text" name="centreID" id="centreID"/><br/><br/><br/>
+			 				<input type="text" disabled="disabled" name="centreID" id="centreID"/><br/><br/><br/>
 			 		Batch ID :
-			 				<input type="text" name="batchID" id="batchID"/><br/><br/><br/>
+			 				<input type="text" disabled="disabled" name="batchID" id="batchID"/><br/><br/><br/>
 			 		Sector Name :
-			 				<input type="text" name="sectorName" id="sectorName"/><br/><br/><br/>
+			 				<input type="text" disabled="disabled" name="sectorName" id="sectorName"/><br/><br/><br/>
 			 		Start Date :
 			 				<input type="text" name="startDate" id="startDate"/><br/><br/><br/>
 			 		End Date :
@@ -98,14 +123,8 @@ tr:hover td { background: #CAEFFD; color: #0768B3; cursor: pointer; }
  		  `				<input type="submit" value="Send" />
   						<span id="cls_f">X</span>
  			</form>
-<%-- <h3>Batch List</h3>
-<c:out value="${batchList.size()}"/>
---%>
-</div>   
+  
 <script type="text/javascript">
-//JavaScript script from: http://coursesweb.net/javascript/
-
-//gets all the .edit_row cells, registers click to each one
 	var edit_row = document.querySelectorAll('#t_id .edit_row');
 	for(var i=0; i<edit_row.length; i++)
 		{

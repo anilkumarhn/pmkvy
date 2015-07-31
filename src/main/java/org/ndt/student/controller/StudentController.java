@@ -19,14 +19,13 @@ public class StudentController
 	 @Autowired
 	 private StudentService studentService ;
 	  
-	
 	 @Autowired
-		private GovtRemitsService govtRemitsService;
+	 private GovtRemitsService govtRemitsService;
 	
-		 @RequestMapping(value = "editstudent",method=RequestMethod.POST)
+	 @RequestMapping(value = "editstudent",method=RequestMethod.POST)
 	 public ModelAndView showEditStudent(@ModelAttribute("student") Student student ,Model model)
 	 {	
-			 String batchID=null;
+		 String batchID=null;
 		 studentService.editStudent(student);
 		 model.addAttribute("govtRemitsList", govtRemitsService.getAllStudentList(batchID));
 		 return new ModelAndView("student","command",model);

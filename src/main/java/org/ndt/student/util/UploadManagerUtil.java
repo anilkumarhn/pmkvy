@@ -10,15 +10,19 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.ndt.student.entity.Centre;
 import org.ndt.student.entity.GovtRemits;
 import org.ndt.student.entity.RoomanRemits;
+import org.ndt.student.entity.Sector;
 import org.ndt.student.services.AccountService;
 import org.ndt.student.services.AssessmentResultService;
 import org.ndt.student.services.BatchService;
+import org.ndt.student.services.CentreService;
 import org.ndt.student.services.CourseService;
 import org.ndt.student.services.GovtRemitsService;
 import org.ndt.student.services.PartnerService;
 import org.ndt.student.services.RoomanRemitsService;
+import org.ndt.student.services.SectorService;
 import org.ndt.student.services.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -51,6 +55,12 @@ public class UploadManagerUtil
 	
 	@Autowired
 	private GovtRemitsService govtRemitsService;
+	
+	@Autowired
+	private SectorService sectorService;
+	
+	@Autowired
+	private CentreService centreService;
 	
 	private static final Logger logger = Logger.getLogger(UploadManagerUtil.class);
 	
@@ -207,4 +217,150 @@ public class UploadManagerUtil
 			}
 		}
 	}
+	
+	
+	public void uploadSectorDetails(MultipartFile file)
+	{		
+		Workbook workbook = null;
+		Sheet spreadsheet = null;
+		 
+		String lowerCaseFileName = file.getOriginalFilename().toLowerCase();
+		if (lowerCaseFileName.endsWith(".xlsx")) 
+		{
+		   	try 
+			{
+		   		XSSFWorkbook workbook1 = new XSSFWorkbook(file.getInputStream());
+		   		spreadsheet = workbook1.getSheetAt(0);
+		   	}
+			catch(Exception e)
+			{
+			   	logger.debug("Exception: " +e.getMessage());
+			    throw new MultipartException("Constraints Voilated");
+		    }
+		}
+		else if(lowerCaseFileName.endsWith(".xls")) 
+		{
+		    try 
+		    {
+		    	workbook = new HSSFWorkbook(file.getInputStream());
+			    spreadsheet = workbook.getSheet("mahesh");
+		    }
+			catch(Exception e)
+			{
+				logger.debug("Exception: " +e.getMessage());
+		        throw new MultipartException("Constraints Voilated");
+		    }
+		}
+		
+		Iterator<Row> rowIterator = spreadsheet.iterator();
+		while (rowIterator.hasNext()) 
+		{
+			StringBuffer sb = new StringBuffer();
+			Row row = (Row) rowIterator.next();				// iterate each row
+			if(row.getRowNum() > 0) 						// ignore first header row 
+			{ 
+				Iterator<Cell> cellIterator = row.cellIterator();				
+				while (cellIterator.hasNext()) 
+				{
+					Cell cell = (Cell) cellIterator.next();	//iterate each cell in a row
+					cell.setCellType(1);					// 1 is string type/ general
+					sb.append(cell);
+					sb.append("~");							// append single quote instead of comma	
+					//logger.debug("Student :"+ sb.toString());
+				}				
+				try
+				{
+					DataProcessManager processManager = new DataProcessManager();
+					Sector sectorDetails = processManager.sectorDataProcessor(sb.toString());
+					sb.delete(0, sb.length());   // after processing each row remove all the data from buffer  
+					if( sectorDetails  !=  null )
+					{
+						sectorService.uploadSectorDetails(sectorDetails);
+					}        
+				}
+				catch(NullPointerException npe)
+				{
+					//npe.printStackTrace();
+					logger.debug("No such records found to be insert.....");
+				}	
+			}
+			else
+			{
+				logger.debug("first row is header row........ ");
+			}
+		}
+	}
+	
+	public void uploadCentreDetails(MultipartFile file)
+	{		
+		Workbook workbook = null;
+		Sheet spreadsheet = null;
+		 
+		String lowerCaseFileName = file.getOriginalFilename().toLowerCase();
+		if (lowerCaseFileName.endsWith(".xlsx")) 
+		{
+		   	try 
+			{
+		   		XSSFWorkbook workbook1 = new XSSFWorkbook(file.getInputStream());
+		   		spreadsheet = workbook1.getSheetAt(0);
+		   	}
+			catch(Exception e)
+			{
+			   	logger.debug("Exception: " +e.getMessage());
+			    throw new MultipartException("Constraints Voilated");
+		    }
+		}
+		else if(lowerCaseFileName.endsWith(".xls")) 
+		{
+		    try 
+		    {
+		    	workbook = new HSSFWorkbook(file.getInputStream());
+			    spreadsheet = workbook.getSheet("mahesh");
+		    }
+			catch(Exception e)
+			{
+				logger.debug("Exception: " +e.getMessage());
+		        throw new MultipartException("Constraints Voilated");
+		    }
+		}
+		
+		Iterator<Row> rowIterator = spreadsheet.iterator();
+		while (rowIterator.hasNext()) 
+		{
+			StringBuffer sb = new StringBuffer();
+			Row row = (Row) rowIterator.next();				// iterate each row
+			if(row.getRowNum() > 0) 						// ignore first header row 
+			{ 
+				Iterator<Cell> cellIterator = row.cellIterator();				
+				while (cellIterator.hasNext()) 
+				{
+					Cell cell = (Cell) cellIterator.next();	//iterate each cell in a row
+					cell.setCellType(1);					// 1 is string type/ general
+					sb.append(cell);
+					sb.append("~");							// append single quote instead of comma	
+					//logger.debug("Student :"+ sb.toString());
+				}				
+				try
+				{
+					DataProcessManager processManager = new DataProcessManager();
+					Centre centreDetails = processManager.centreDataProcessor(sb.toString());
+					sb.delete(0, sb.length());   // after processing each row remove all the data from buffer  
+					if(centreDetails != null )
+					{
+						centreService.uploadCentreDetails(centreDetails);
+					}        
+				}
+				catch(NullPointerException npe)
+				{
+					//npe.printStackTrace();
+					logger.debug("No such records found to be insert.....");
+				}	
+			}
+			else
+			{
+				logger.debug("first row is header row........ ");
+			}
+		}
+	}
+	
 }
