@@ -2,9 +2,20 @@
 <!DOCTYPE tiles-definitions PUBLIC  
        "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"  
        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">  
-<tiles-definitions>  
-    <definition name="base.definition"  
-        template="/WEB-INF/jsp/layout.jsp">  
+
+<tiles-definitions> 
+
+    <definition name="base.definition.login"  template="/WEB-INF/jsp/loginlayout.jsp">  
+	    <put-attribute name="title" value="" />   
+        <put-attribute name="body" value="" />  
+    </definition> 
+    
+     <definition name="login-form" extends="base.definition.login">  
+        <put-attribute name="title" value="Login Page" />  
+        <put-attribute name="body" value="/WEB-INF/jsp/login-form.jsp" />  
+    </definition> 
+    
+    <definition name="base.definition" template="/WEB-INF/jsp/layout.jsp">  
         <put-attribute name="title" value="" />  
         <put-attribute name="header" value="/WEB-INF/jsp/header.jsp" />  
         <put-attribute name="menu" value="/WEB-INF/jsp/menu.jsp" />  
@@ -13,7 +24,7 @@
     </definition>  
   
     <definition name="contact" extends="base.definition">  
-        <put-attribute name="title" value="Contact Manager" />  
+        <put-attribute name="title" value="Home Page" />  
         <put-attribute name="body" value="/WEB-INF/jsp/contact.jsp" />  
     </definition>  
   
@@ -32,25 +43,70 @@
         <put-attribute name="body" value="/WEB-INF/jsp/batch.jsp" />  
     </definition> 
     
-    <definition name="roomanPartner" extends="base.definition">  
-        <put-attribute name="title" value="Rooman Spring MVC" />  
-        <put-attribute name="body" value="/WEB-INF/jsp/roomanPartner.jsp" />  
-    </definition>
-    
       <definition name="student" extends="base.definition">  
-        <put-attribute name="title" value="Student List Spring MVC" />  
+        <put-attribute name="title" value="Student Page" />  
         <put-attribute name="body" value="/WEB-INF/jsp/student.jsp" />  
     </definition>  
-
-    <definition name="roomanFranchise" extends="base.definition">  
-        <put-attribute name="title" value="Rooman Spring MVC" />  
-        <put-attribute name="body" value="/WEB-INF/jsp/roomanFranchise.jsp" />  
-    </definition>
-
-	<definition name="login-form" extends="base.definition">  
-        <put-attribute name="title" value="Student List Spring MVC" />  
-        <put-attribute name="body" value="/WEB-INF/jsp/login-form.jsp" />  
-    </definition>  
 	
+	<definition name="manage-user-account" extends="base.definition">  
+        <put-attribute name="title" value="Account Page" />  
+        <put-attribute name="body" value="/WEB-INF/jsp/manage-user-account.jsp" />  
+    </definition>  
+    
+    <definition name="dataupload-form" extends="base.definition">  
+        <put-attribute name="title" value="Account" />  
+        <put-attribute name="body" value="/WEB-INF/jsp/dataupload-form.jsp" />  
+    </definition>  
+    
+    <definition name="my-profile" extends="base.definition">  
+        <put-attribute name="title" value="Profile Page" />  
+        <put-attribute name="body" value="/WEB-INF/jsp/my-profile.jsp" />  
+    </definition>  
+ 
+    <definition name="sector" extends="base.definition">
+       	<put-attribute name="title" value="Sectors Page" />
+       	<put-attribute name="body" value="/WEB-INF/jsp/sector.jsp" />
+	</definition>
 
-</tiles-definitions>  
+	<definition name="studentinfo" extends="base.definition">
+       	<put-attribute name="title" value="Student Info" />
+       	<put-attribute name="body" value="/WEB-INF/jsp/studentinfo.jsp" />
+	</definition>
+
+    <definition name="reportsinfo" extends="base.definition">
+       	<put-attribute name="title" value="Reports Info" />
+       	<put-attribute name="body" value="/WEB-INF/jsp/reports.jsp" />
+	</definition>
+	
+	<definition name="partnercourses" extends="base.definition">
+       	<put-attribute name="title" value="Course Page" />
+       	<put-attribute name="body" value="/WEB-INF/jsp/partnercourses.jsp" />
+	</definition>
+
+	<definition name="partnerprofile" extends="base.definition">
+       	<put-attribute name="title" value="Partner Profile" />
+       	<put-attribute name="body" value="/WEB-INF/jsp/partnerprofile.jsp" />
+	</definition>
+	
+	<definition name="partnerbatches" extends="base.definition">
+       	<put-attribute name="title" value="Partner Batches" />
+       	<put-attribute name="body" value="/WEB-INF/jsp/partnerbatches.jsp" />
+	</definition>
+
+	<definition name="partnerstudents" extends="base.definition">
+       	<put-attribute name="title" value="Partner Students" />
+       	<put-attribute name="body" value="/WEB-INF/jsp/partnerstudents.jsp" />
+	</definition>
+
+	<definition name="partnerstudentinfo" extends="base.definition">
+       	<put-attribute name="title" value="Partner Students Info" />
+       	<put-attribute name="body" value="/WEB-INF/jsp/partnerstudentinfo.jsp" />
+	</definition>
+	
+	<definition name="partnerremits" extends="base.definition">
+       	<put-attribute name="title" value="Partner Remits" />
+       	<put-attribute name="body" value="/WEB-INF/jsp/partnerremits.jsp" />
+	</definition>
+	
+   	</tiles-definitions>
+

@@ -1,1 +1,1 @@
-<jsp:forward page="contact.html"></jsp:forward>
+<jsp:forward page="login-form.html"></jsp:forward>

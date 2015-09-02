@@ -13,20 +13,22 @@
 
 <filter-mapping>
     <filter-name>httpMethodFilter</filter-name>
-    <servlet-name>pmkvy</servlet-name>
+    <servlet-name>pmkvydemo</servlet-name>
 </filter-mapping> 
  
  
  <servlet>  
-    <servlet-name>pmkvy</servlet-name>  
+    <servlet-name>pmkvydemo</servlet-name>  
     <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class> 
     
     <load-on-startup>1</load-on-startup>  
 </servlet>  
       
 <servlet-mapping>  
-    <servlet-name>pmkvy</servlet-name>  
+    <servlet-name>pmkvydemo</servlet-name>  
     <url-pattern>*.html</url-pattern>  
 </servlet-mapping>  
-      
+      <welcome-file-list>
+      <welcome-file>index.jsp</welcome-file>
+      </welcome-file-list>
 </web-app>  
